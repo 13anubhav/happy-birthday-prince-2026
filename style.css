@@ -332,7 +332,7 @@ h1 {
     letter-spacing: 1px;
 }
 
-.prince-image {
+.papa-image {
     width: clamp(150px, 25vw, 300px);
     height: auto;
     border-radius: 20px;
@@ -345,7 +345,7 @@ h1 {
     overflow: hidden;
 }
 
-.prince-image::before {
+.papa-image::before {
     content: '';
     position: absolute;
     top: 0;
@@ -356,9 +356,90 @@ h1 {
     animation: imageShine 4s infinite;
 }
 
-.prince-image:hover {
+.papa-image:hover {
     transform: scale(1.05) rotate(2deg);
     box-shadow: 0 20px 70px rgba(255, 110, 196, 0.6), 0 0 50px rgba(120, 115, 245, 0.5);
+}
+
+/* Carousel Styles */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%;
+}
+
+.carousel-slide {
+    flex: 0 0 33.333%;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: 15px;
+}
+
+.carousel-btn.next {
+    right: 15px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.2);
 }
 
 @keyframes nameFade {
@@ -468,6 +549,24 @@ footer p {
     .candles { bottom: 225px; gap: 20px; }
     .candle { width: 14px; height: 60px; }
     .cake-platform { width: 320px; }
+
+    .carousel-container {
+        max-width: 300px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .carousel-btn.prev {
+        left: 10px;
+    }
+
+    .carousel-btn.next {
+        right: 10px;
+    }
 
     footer {
         padding: 12px;

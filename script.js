@@ -121,6 +121,72 @@ function celebrate() {
     }, 3000);
 }
 
+// Carousel functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const indicators = document.querySelectorAll('.indicator');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+function updateCarousel() {
+    // Update slides
+    slides.forEach((slide, index) => {
+        if (index === currentSlide) {
+            slide.classList.add('active');
+        } else {
+            slide.classList.remove('active');
+        }
+    });
+
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        if (index === currentSlide) {
+            indicator.classList.add('active');
+        } else {
+            indicator.classList.remove('active');
+        }
+    });
+
+    // Move carousel
+    const carousel = document.querySelector('.carousel');
+    carousel.style.transform = `translateX(-${currentSlide * 33.333}%)`;
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateCarousel();
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateCarousel();
+}
+
+function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    updateCarousel();
+}
+
+// Event listeners
+if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+}
+
+if (indicators.length > 0) {
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => goToSlide(index));
+    });
+}
+
+// Auto-play carousel
+setInterval(() => {
+    nextSlide();
+}, 4000); // Change slide every 4 seconds
+
+// Initial setup
+updateCarousel();
+
 // Initial confetti burst
 setTimeout(() => {
     createMassiveConfetti();
